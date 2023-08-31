@@ -1,38 +1,51 @@
 import express from "express";
 import axios from "axios";
 import { pdfToPng } from "pdf-to-png-converter";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 import path from "path";
+import multer from "multer";
 
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 3030;
+const PORT = process.env.PORT ?? 3030;
+const JSREPORT_URL = process.env.JSREPORT_URL ?? "";
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html")
-})
+  // Render Index Page When Server is UP
+  res.sendFile(__dirname + "/server.html");
+});
 
-app.post("/converter/pdf-png", async (req, res) => {
+app.post("/converter/pdf-png", upload.single('file'), async (req, res) => {
   try {
-    let imageDownloaded = null;
-    if (req.body.hasOwnProperty("url") && Object.keys(req.body).length === 1) {
+
+    // Fetch PDF from URL BODY or JS Reports
+    let imageDownloaded = {data: null, status: 400};
+    if (req.file) {
+      imageDownloaded.data = req.file.buffer
+    }
+    else if (req.body.hasOwnProperty("url") && Object.keys(req.body).length === 1) {
       imageDownloaded = await axios.get(req.body.url, {
         responseType: "arraybuffer",
       });
-    } else {
-      imageDownloaded = await axios.post(
-        "https://f869-154-0-10-27.ngrok-free.app/api/report",
-        req.body,
-        { responseType: "arraybuffer" }
-      );
+    } else if (req.body.hasOwnProperty("template") && req.body.hasOwnProperty("data")){
+      imageDownloaded = await axios.post(JSREPORT_URL, req.body, {
+        responseType: "arraybuffer",
+      });
     }
-    
+    else{
+      return res.status(imageDownloaded.status).json({ error: "In Valid Request Body"})
+    }
 
+    // Convert PDF to PNG
     const pngPages = await pdfToPng(
       imageDownloaded.data, // The function accepts PDF file path or a Buffer
       {
@@ -47,14 +60,16 @@ app.post("/converter/pdf-png", async (req, res) => {
       }
     );
 
+    // Convert Buffer to ByteArray
     const arr = new Uint8Array(pngPages[0].content);
 
-    res.status(imageDownloaded.status).end(arr);
+    // Returns the Converted ByteArray
+    res.status(500).end(arr);
   } catch (error) {
     res.status(500).json({ error: "An error occurred - " + error });
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

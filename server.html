@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --block-color-1: #3498db;
+        --block-color-2: #e74c3c;
+        --block-color-3: #2ecc71;
+        --block-color-4: #f39c12;
+        --block-color-5: #9b59b6;
+        --block-color-6: #1abc9c;
+        --block-color-7: transparent;
+        --width: 150px;
+        --height: 150px;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: white;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 10px;
+      }
+      .block {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: white;
+        transition: transform 0.5s;
+      }
+      .block:nth-child(1) {
+        background-color: var(--block-color-1);
+      }
+      .block:nth-child(2) {
+        background-color: var(--block-color-2);
+      }
+      .block:nth-child(3) {
+        background-color: var(--block-color-3);
+      }
+      .block:nth-child(4) {
+        background-color: var(--block-color-4);
+      }
+      .block:nth-child(5) {
+        background-color: var(--block-color-5);
+      }
+      .block:nth-child(6) {
+        background-color: var(--block-color-6);
+      }
+      .block:nth-child(7) {
+        background-color: var(--block-color-7);
+      }
+      .block:nth-child(8) {
+        background-color: var(--block-color-7);
+      }
+      .block:nth-child(9) {
+        background-color: var(--block-color-7);
+      }
+      .s-letter {
+        font-size: 60px;
+        line-height: 0.6;
+        position: relative;
+        z-index: 1;
+      }
+
+      .s-letter::after {
+        content: ".";
+        background-color: white;
+        color: transparent;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        bottom: -4px;
+        right: -8px;
+      }
+      .container {
+        perspective: 1000px;
+        perspective-origin: 100% 100%;
+      }
+      
+      .cube {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        transform-style: preserve-3d;
+        animation: rotate 6s linear infinite;
+      }
+      
+      .cube > div {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        opacity: 0.9;
+      }
+      
+      .s1 {
+        transform: translateZ(100px);
+        background: linear-gradient(to right, var(--block-color-1), #001f4e);
+      }
+      
+      .s2 {
+        transform: rotateY(90deg) translateZ(100px);
+        background: linear-gradient(to right, var(--block-color-2), #001f4e);
+
+      }
+      
+      .s3 {
+        transform: rotateY(180deg) translateZ(100px);
+        background: linear-gradient(to right, var(--block-color-3), #001f4e);
+
+      }
+      
+      .s4 {
+        transform: rotateX(90deg) translateZ(100px);
+        background: linear-gradient(to right, var(--block-color-4), #001f4e);
+
+      }
+      
+      .s5 {
+        transform: rotateY(-90deg) translateZ(100px);
+        background: linear-gradient(to right, var(--block-color-5), #001f4e);
+
+      }
+      
+      .s6 {
+        transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
+        background: linear-gradient(to right, var(--block-color-6), #001f4e);
+
+      }
+
+      .s{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+      
+      @keyframes rotate {
+        100% {
+          transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
+        }
+      }
+      
+    </style>
+    <title>Block Animation with Shuffle</title>
+  </head>
+  <body>
+    <div class="grid" id="grid">
+      <div class="block">
+        <div class="s-letter">S</div>
+        <!-- <div class="cube"></div> -->
+      </div>
+      <div class="block">
+        <div class="s-letter">S</div>
+        <!-- <div class="cube"></div> -->
+      </div>
+      <div class="block">
+        <div class="s-letter">S</div>
+        <!-- <div class="cube"></div> -->
+      </div>
+      <div class="block">
+        <div class="s-letter">S</div>
+        <!-- <div class="cube"></div> -->
+      </div>
+      <div class="block">
+        <div class="s-letter">S</div>
+        <!-- <div class="cube"></div> -->
+      </div>
+      <div class="block">
+        <div class="s-letter">S</div>
+        <!-- <div class="cube"></div> -->
+      </div>
+      <div class="block">
+        <!-- <div class="container">
+            <div class="cube">
+              <div class="s s1"><div class="s-letter">S</div></div>
+              <div class="s s2"><div class="s-letter">S</div></div>
+              <div class="s s3"><div class="s-letter">S</div></div>
+              <div class="s s4"><div class="s-letter">S</div></div>
+              <div class="s s5"><div class="s-letter">S</div></div>
+              <div class="s s6"><div class="s-letter">S</div></div>
+            </div>
+          </div> -->
+      </div>
+    </div>
+
+    
+    <script>
+      const grid = document.getElementById("grid");
+      const blocks = Array.from(document.querySelectorAll(".block"));
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      function rearrangeBlocks() {
+        shuffleArray(blocks);
+        blocks.forEach((block, index) => {
+          block.style.order = index;
+        });
+      }
+
+      rearrangeBlocks();
+      setInterval(rearrangeBlocks, 5000); // 1 minute
+    </script>
+  </body>
+</html>

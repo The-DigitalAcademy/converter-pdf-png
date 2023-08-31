@@ -4,6 +4,8 @@ import { pdfToPng } from "pdf-to-png-converter";
 import { fileURLToPath } from "url";
 import path from "path";
 import multer from "multer";
+import dotenv from 'dotenv'
+dotenv.config()
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -26,7 +28,6 @@ app.get("/", (req, res) => {
 
 app.post("/converter/pdf-png", upload.single('file'), async (req, res) => {
   try {
-
     // Fetch PDF from URL BODY or JS Reports
     let imageDownloaded = {data: null, status: 400};
     if (req.file) {
@@ -64,8 +65,9 @@ app.post("/converter/pdf-png", upload.single('file'), async (req, res) => {
     const arr = new Uint8Array(pngPages[0].content);
 
     // Returns the Converted ByteArray
-    res.status(500).end(arr);
+    res.status(200).end(arr);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: "An error occurred - " + error });
   }
 });

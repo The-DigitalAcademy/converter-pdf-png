@@ -1,222 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      :root {
-        --block-color-1: #3498db;
-        --block-color-2: #e74c3c;
-        --block-color-3: #2ecc71;
-        --block-color-4: #f39c12;
-        --block-color-5: #9b59b6;
-        --block-color-6: #1abc9c;
-        --block-color-7: transparent;
-        --width: 150px;
-        --height: 150px;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <style>
+    :root {
+      --block-color-1: #3498db;
+      --block-color-2: #e74c3c;
+      --block-color-3: #2ecc71;
+      --block-color-4: #f39c12;
+      --block-color-5: #9b59b6;
+      --block-color-6: #1abc9c;
+      --block-color-7: transparent;
+      --width: 150px;
+      --height: 150px;
+      --block-color-8: black;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: white;
+      gap: 1.625rem;
+    }
+
+    .tab-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 5vh;
+      border: solid red 1px;
+    }
+
+    .tab-pane {
+      margin-block: 1rem;
+    }
+
+    .tab {
+      width: max-content;
+      padding: 0.5rem;
+      height: 100%;
+    }
+
+    .selected {
+      border: #9b59b6 solid 1px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 1rem;
+      animation-name: grid-animate;
+      animation-duration: 2s;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+    }
+
+    @keyframes grid-animate {
+      0% {
+        opacity: 0%;
       }
 
-      body {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background-color: white;
+      25% {
+        opacity: 25%;
       }
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 100px);
-        gap: 10px;
-      }
-      .block {
-        width: 100px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 24px;
-        color: white;
-        transition: transform 0.5s;
-      }
-      .block:nth-child(1) {
-        background-color: var(--block-color-1);
-      }
-      .block:nth-child(2) {
-        background-color: var(--block-color-2);
-      }
-      .block:nth-child(3) {
-        background-color: var(--block-color-3);
-      }
-      .block:nth-child(4) {
-        background-color: var(--block-color-4);
-      }
-      .block:nth-child(5) {
-        background-color: var(--block-color-5);
-      }
-      .block:nth-child(6) {
-        background-color: var(--block-color-6);
-      }
-      .block:nth-child(7) {
-        background-color: var(--block-color-7);
-      }
-      .block:nth-child(8) {
-        background-color: var(--block-color-7);
-      }
-      .block:nth-child(9) {
-        background-color: var(--block-color-7);
-      }
-      .s-letter {
-        font-size: 60px;
-        line-height: 0.6;
-        position: relative;
-        z-index: 1;
+      50% {
+        opacity: 50%;
       }
 
-      .s-letter::after {
-        content: ".";
-        background-color: white;
-        color: transparent;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        bottom: -4px;
-        right: -8px;
-      }
-      .container {
-        perspective: 1000px;
-        perspective-origin: 100% 100%;
-      }
-      
-      .cube {
-        position: relative;
-        width: 200px;
-        height: 200px;
-        transform-style: preserve-3d;
-        animation: rotate 6s linear infinite;
-      }
-      
-      .cube > div {
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        opacity: 0.9;
-      }
-      
-      .s1 {
-        transform: translateZ(100px);
-        background: linear-gradient(to right, var(--block-color-1), #001f4e);
-      }
-      
-      .s2 {
-        transform: rotateY(90deg) translateZ(100px);
-        background: linear-gradient(to right, var(--block-color-2), #001f4e);
-
-      }
-      
-      .s3 {
-        transform: rotateY(180deg) translateZ(100px);
-        background: linear-gradient(to right, var(--block-color-3), #001f4e);
-
-      }
-      
-      .s4 {
-        transform: rotateX(90deg) translateZ(100px);
-        background: linear-gradient(to right, var(--block-color-4), #001f4e);
-
-      }
-      
-      .s5 {
-        transform: rotateY(-90deg) translateZ(100px);
-        background: linear-gradient(to right, var(--block-color-5), #001f4e);
-
-      }
-      
-      .s6 {
-        transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
-        background: linear-gradient(to right, var(--block-color-6), #001f4e);
-
+      75% {
+        opacity: 75%;
       }
 
-      .s{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
+      100% {
+        opacity: 100%;
       }
-      
-      @keyframes rotate {
-        100% {
-          transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
-        }
+    }
+
+    .upload {
+      background-color: var(--block-color-8);
+    }
+
+    .block,
+    .upload {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: white;
+      transition: transform 0.5s;
+    }
+
+    .block:nth-child(1) {
+      background-color: var(--block-color-1);
+    }
+
+    .block:nth-child(2) {
+      background-color: var(--block-color-2);
+    }
+
+    .block:nth-child(3) {
+      background-color: var(--block-color-3);
+    }
+
+    .block:nth-child(4) {
+      background-color: var(--block-color-4);
+    }
+
+    .block:nth-child(5) {
+      background-color: var(--block-color-5);
+    }
+
+    .block:nth-child(6) {
+      background-color: var(--block-color-6);
+    }
+
+    .block:nth-child(7) {
+      background-color: var(--block-color-7);
+    }
+
+    .block:nth-child(8) {
+      background-color: var(--block-color-7);
+    }
+
+    .block:nth-child(9) {
+      background-color: var(--block-color-7);
+    }
+
+    .s-letter,
+    .plus-sign {
+      font-size: 60px;
+      line-height: 0.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .s-letter::after {
+      content: ".";
+      background-color: white;
+      color: transparent;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      bottom: -4px;
+      right: -10px;
+    }
+
+    .container {
+      perspective: 1000px;
+      perspective-origin: 100% 100%;
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cube {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      transform-style: preserve-3d;
+      animation: rotate 6s linear infinite;
+    }
+
+    .cube>div {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      opacity: 0.9;
+    }
+
+    .s1 {
+      transform: translateZ(100px);
+      background: linear-gradient(to right, var(--block-color-1), #001f4e);
+    }
+
+    .s2 {
+      transform: rotateY(90deg) translateZ(100px);
+      background: linear-gradient(to right, var(--block-color-2), #001f4e);
+    }
+
+    .s3 {
+      transform: rotateY(180deg) translateZ(100px);
+      background: linear-gradient(to right, var(--block-color-3), #001f4e);
+    }
+
+    .s4 {
+      transform: rotateX(90deg) translateZ(100px);
+      background: linear-gradient(to right, var(--block-color-4), #001f4e);
+    }
+
+    .s5 {
+      transform: rotateY(-90deg) translateZ(100px);
+      background: linear-gradient(to right, var(--block-color-5), #001f4e);
+    }
+
+    .s6 {
+      transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
+      background: linear-gradient(to right, var(--block-color-6), #001f4e);
+    }
+
+    .s {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
       }
-      
-    </style>
-    <title>Block Animation with Shuffle</title>
-  </head>
-  <body>
-    <div class="grid" id="grid">
-      <div class="block">
-        <div class="s-letter">S</div>
-        <!-- <div class="cube"></div> -->
-      </div>
-      <div class="block">
-        <div class="s-letter">S</div>
-        <!-- <div class="cube"></div> -->
-      </div>
-      <div class="block">
-        <div class="s-letter">S</div>
-        <!-- <div class="cube"></div> -->
-      </div>
-      <div class="block">
-        <div class="s-letter">S</div>
-        <!-- <div class="cube"></div> -->
-      </div>
-      <div class="block">
-        <div class="s-letter">S</div>
-        <!-- <div class="cube"></div> -->
-      </div>
-      <div class="block">
-        <div class="s-letter">S</div>
-        <!-- <div class="cube"></div> -->
-      </div>
-      <div class="block">
-        <!-- <div class="container">
-            <div class="cube">
-              <div class="s s1"><div class="s-letter">S</div></div>
-              <div class="s s2"><div class="s-letter">S</div></div>
-              <div class="s s3"><div class="s-letter">S</div></div>
-              <div class="s s4"><div class="s-letter">S</div></div>
-              <div class="s s5"><div class="s-letter">S</div></div>
-              <div class="s s6"><div class="s-letter">S</div></div>
+    }
+  </style>
+  <title>Block Animation with Shuffle</title>
+</head>
+
+<body>
+
+  <div class="grid" id="grid">
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+    <div class="block">
+      <div class="s-letter">S</div>
+      <!-- <div class="cube"></div> -->
+    </div>
+  </div>
+
+
+
+  <div class="upload" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="plus-sign">+</div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Choose Converter</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-js-report-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-js-report" type="button" role="tab" aria-controls="nav-js-report"
+                aria-selected="true">
+                JS-Report
+              </button>
+              <button class="nav-link" id="nav-url-tab" data-bs-toggle="tab" data-bs-target="#nav-url" type="button"
+                role="tab" aria-controls="nav-url" aria-selected="false">
+                URL
+              </button>
+              <button class="nav-link" id="nav-file-tab" data-bs-toggle="tab" data-bs-target="#nav-file" type="button"
+                role="tab" aria-controls="nav-file" aria-selected="false">
+                File
+              </button>
             </div>
-          </div> -->
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-js-report" role="tabpanel"
+              aria-labelledby="nav-js-report-tab">
+              <div class="mb-3">
+                <label for="template-name" class="form-label">Template Name</label>
+                <input class="form-control mb-3" type="text" id="template-name" />
+                <label for="template-title" class="form-label">Micro-App Title</label>
+                <input class="form-control mb-3" type="text" id="template-title" />
+                <label for="template-subtitle" class="form-label">Micro-App Sub-Title</label>
+                <input class="form-control mb-3" type="text" id="template-subtitle" />
+                <label for="template-description" class="form-label">Micro-App Description</label>
+                <input class="form-control mb-3" type="text" id="template-description" />
+                <div class="d-flex justify-content-between align-items-center mb-3"><label for="add-screenshots"
+                    class="form-label">Micro-App
+                    Screenshots</label><button class="btn btn-primary" id="add-screenshots"
+                    onclick="addUrlBox()">+</button>
+                </div>
+                <div id="screenshots-container" class="d-flex flex-column">
+
+                </div>
+                <label for="template-logo" class="form-label">Micro-App Logo</label>
+                <input class="form-control mb-3" type="url" id="template-logo" />
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-url" role="tabpanel" aria-labelledby="nav-url-tab">
+              <div class="mb-3">
+                <label for="formUrl" class="form-label">Provide valid PDF url</label>
+                <input class="form-control" type="url" id="formUrl" />
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-file" role="tabpanel" aria-labelledby="nav-file-tab">
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Upload valid PDF file</label>
+                <input class="form-control" type="file" id="formFile" accept="application/pdf" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="downloadImage()" data-bs-dismiss="modal" class="btn btn-secondary">
+            Download
+          </button>
+        </div>
       </div>
     </div>
+  </div>
 
-    
-    <script>
-      const grid = document.getElementById("grid");
-      const blocks = Array.from(document.querySelectorAll(".block"));
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
 
-      function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
+  <script>
+    const grid = document.getElementById("grid");
+    const uploadBTN = document.querySelector(".upload")
+    const blocks = Array.from(document.querySelectorAll(".block"));
+
+    function Loader() {
+      return String.raw`<div class="container" id="loader">
+          <div class="cube">
+            <div class="s s1"><div class="s-letter">S</div></div>
+            <div class="s s2"><div class="s-letter">S</div></div>
+            <div class="s s3"><div class="s-letter">S</div></div>
+            <div class="s s4"><div class="s-letter">S</div></div>
+            <div class="s s5"><div class="s-letter">S</div></div>
+            <div class="s s6"><div class="s-letter">S</div></div>
+          </div>
+      </div >`
+    }
+
+    function addUrlBox() {
+      const container = document.querySelector("#screenshots-container")
+      const urlInputBox = document.createElement('input')
+      urlInputBox.classList = "form-control mb-3"
+      urlInputBox.id = "screenshotURL"
+      container.appendChild(urlInputBox)
+    }
+
+    function downloadImage() {
+      const activeTab = document.querySelector(".nav-link.active");
+
+      if (activeTab.dataset.bsTarget === "#nav-url") {
+        grid.style.display = "none"
+        
+        convertURL();
+      }
+
+      else if (activeTab.dataset.bsTarget === "#nav-js-report") {
+        grid.style.display = "none"
+        
+        convertFormData();
+      }
+
+      else if (activeTab.dataset.bsTarget === "#nav-file") {
+        grid.style.display = "none"
+        
+        convertFile();
+      }
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function rearrangeBlocks() {
+      shuffleArray(blocks);
+      blocks.forEach((block, index) => {
+        block.style.order = index;
+      });
+    }
+
+    function convertFile() {
+      const formData = new FormData()
+      const file = document.querySelector("#formFile");
+      const anchor = document.createElement("a");
+
+      if (file?.files?.length < 1) {
+        grid.style.display = 'grid'
+
+        return;
+      }
+
+      uploadBTN.dataset.bsToggle = ""
+
+      document.body.insertAdjacentHTML("afterbegin", Loader())
+
+      const loader = document.getElementById("loader")
+
+
+      formData.append("file", file.files[0])
+      fetch("/converter/pdf-png", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "same-origin", // no-cors, *cors, same-origin
+        body: formData, // body data type must match "Content-Type" header
+      })
+        .then((response) => response.arrayBuffer())
+        .then((imageConverted) => {
+          if (!imageConverted) {
+            grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+            return;
+          }
+
+          const blob = new Blob([imageConverted], {
+            type: "image/png",
+          });
+
+          anchor.href = URL.createObjectURL(blob);
+          anchor.download = "HelloWorld.png";
+          anchor.click();
+        }).then(result => {
+          grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+          
+        })
+        .catch((err) => {
+          grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+          
+
+        });
+    }
+
+    function convertURL() {
+      const url = document.querySelector("#formUrl");
+      const anchor = document.createElement("a");
+
+      if (!url?.value) {
+        grid.style.display = 'grid'
+
+        return;
+      }
+
+      uploadBTN.dataset.bsToggle = ""
+
+      document.body.insertAdjacentHTML("afterbegin", Loader())
+
+      const loader = document.getElementById("loader")
+
+      fetch("/converter/pdf-png", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "same-origin", // no-cors, *cors, same-origin
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({ url: url.value }), // body data type must match "Content-Type" header
+      })
+        .then((response) => response.arrayBuffer())
+        .then((imageConverted) => {
+          if (!imageConverted) {
+            grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+            return;
+          }
+
+          const blob = new Blob([imageConverted], {
+            type: "image/png",
+          });
+
+          anchor.href = URL.createObjectURL(blob);
+          anchor.download = "HelloWorld.png";
+          anchor.click();
+        }).then(result => {
+          grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+          
+        })
+        .catch((err) => {
+          grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+          
+
+        });
+    }
+
+    function convertFormData() {
+      const name = document.querySelector("#template-name");
+      const title = document.querySelector("#template-title");
+      const subTitle = document.querySelector("#template-subtitle");
+      const description = document.querySelector("#template-description");
+      const images = document.querySelectorAll("#screenshotURL");
+      const logo = document.querySelector("#template-logo");
+      const anchor = document.createElement("a");
+
+      if (!name.value) {
+        grid.style.display = 'grid'
+
+        return;
+      }
+
+      uploadBTN.dataset.bsToggle = ""
+
+      document.body.insertAdjacentHTML("afterbegin", Loader())
+
+      const loader = document.getElementById("loader")
+
+
+      const data = {
+        "template": {
+          "name": `${name.value.toLowerCase()}-template`
+        },
+        "data": {
+          "title": title.value,
+          "para2": subTitle.value,
+          "para3": description.value,
+          "imagePaths": {
+            "logo": "https://strapiayoba.s3.af-south-1.amazonaws.com/African_American_Woman_PNG_Pic_7359b53a6b.png"
+          }
         }
       }
 
-      function rearrangeBlocks() {
-        shuffleArray(blocks);
-        blocks.forEach((block, index) => {
-          block.style.order = index;
-        });
-      }
+      images.forEach((image, index) => {
+        data.data.imagePaths['image' + (index + 1).toString()] = image.value
+      })
 
-      rearrangeBlocks();
-      setInterval(rearrangeBlocks, 5000); // 1 minute
-    </script>
-  </body>
+      fetch("/converter/pdf-png", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "same-origin", // no-cors, *cors, same-origin
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(
+          data
+        ), // body data type must match "Content-Type" header
+      })
+        .then((response) => response.arrayBuffer())
+        .then((imageConverted) => {
+          if (!imageConverted) {
+            grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+            return;
+          }
+
+          const blob = new Blob([imageConverted], {
+            type: "image/png",
+          });
+
+          anchor.href = URL.createObjectURL(blob);
+          anchor.download = "HelloWorld.png";
+          anchor.click();
+        }).then(result => {
+          grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+          
+
+        })
+        .catch((err) => {
+          grid.style.display = 'grid'
+          loader.style.display = 'none'
+          uploadBTN.dataset.bsToggle = "modal"
+          
+
+        });
+    }
+
+    rearrangeBlocks();
+    setInterval(rearrangeBlocks, 5000); // 1 minute
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script type="module" src="src/toastify.js"></script>
+</body>
+
 </html>

@@ -86,7 +86,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### Overview
 
-![Converter-Architecture drawio](https://github.com/The-DigitalAcademy/converter-pdf-png/assets/65924485/cd9abf52-04d4-40ca-a257-d9c6ce936932)
+![Converter-Architecture](https://github.com/The-DigitalAcademy/converter-pdf-png/assets/65924485/e8806432-0caf-4119-83fb-da4184f0d6f8)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -65,9 +65,8 @@ app.post("/converter/pdf-png", upload.single('file'), async (req, res) => {
     const arr = new Uint8Array(pngPages[0].content);
 
     // Returns the Converted ByteArray
-    res.status(200).end(arr);
+    res.status(imageDownloaded.status).end(arr);
   } catch (error) {
-    console.log(error)
     res.status(500).json({ error: "An error occurred - " + error });
   }
 });

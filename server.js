@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT ?? 3030;
-const JSREPORT_URL = process.env.JSREPORT_URL ?? "";
+const JSREPORT_URL = process.env.JSREPORT_URL ?? "http://localhost:5488/api/report";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });

@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+![Converter-Architecture drawio](https://github.com/The-DigitalAcademy/converter-pdf-png/assets/65924485/ab64fb55-c5a8-41a1-885b-2291f44074f8)<a name="readme-top"></a>
 
 [![Forks][forks-shield]][forks-url]
 [![Issues][issues-shield]][issues-url]
@@ -35,6 +35,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        
       </ul>
     </li>
     <li>
@@ -81,6 +82,15 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - JS-Reports
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+### Overview
+
+![Converter-Architecture drawio](https://github.com/The-DigitalAcademy/converter-pdf-png/assets/65924485/cd9abf52-04d4-40ca-a257-d9c6ce936932)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- GETTING STARTED -->
 

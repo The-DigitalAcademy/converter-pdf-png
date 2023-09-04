@@ -1,17 +1,14 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/The-DigitalAcademy/converter-pdf-png">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="./public/images/Screenshot 2023-09-04 at 10.41.12.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Converter PDF/PNG</h3>
@@ -22,11 +19,11 @@
     <a href="https://github.com/The-DigitalAcademy/converter-pdf-png"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.cosm/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/The-DigitalAcademy/converter-pdf-png">View Demo</a>
     ·
     <a href="https://github.com/The-DigitalAcademy/converter-pdf-png/issues">Report Bug</a>
     ·
-    <a href="https://github.com/The-DigitalAcademy/converter-pdf-png/issues">Request Feature</a>
+    <a href="https://github.com/The-DigitalAcademy/converter-pdf-png/pull">Pull Requests</a>
   </p>
 </div>
 
@@ -60,15 +57,16 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Project Logo](./public/images/converter-logo.png)
 
-There are many PDF to Image Converters available on GitHub or NPM; however, I didn't find one that really suited my needs so I created this lightweight, utility project as a convenient solution.
+There are many PDF to Image Converters available on GitHub or NPM; however, I didn't find one that really suited my needs, so I created this lightweight, utility project as a convenient solution.
 
 Here's why:
 
 - PDF is widely used as the preferred document type for JS Reports and other reporting tools.
-- Converting PDF in javascript is not straioght forward, and requires an aggregation of many different JS libraries.
-- Project exposes the conversion process to a user by way of a REST API of the "FRONTEND" forms.
+- Converting PDF in javascript is not straight forward, and requires an aggregation of many different JS libraries.
+- PDF JS libraries requires extensive system configurations, so the project abstracts all those system requirements and rather
+    > **Exposes the conversion process to a user by way of a REST API or Frontend APIs.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -76,9 +74,11 @@ Here's why:
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-- [![Next][Next.js]][Next-url]
-- [![Node][Node.js]][Node-url]
-- [![Bootstrap.com][Bootstrap.com]][Bootstrap-url]
+- Node-JS
+- Bootstrap
+- pdf-to-png-converter
+- Docker
+- JS-Reports
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -139,44 +139,42 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 http://localhost:3030/
 
-![Alt text](<Screenshot 2023-09-04 at 09.13.15.png>)
+![Converter Frontend Page](<public/images/Screenshot 2023-09-04 at 09.13.15.png>)
 
 <h1>Available Converters</h1>
 
-Submit Form Data
+<h3>Submit JS-Report Form</h3>
 
-![Alt text](<Screenshot 2023-09-04 at 09.19.35.png>)
+![JS Report Tab](<public/images/Screenshot 2023-09-04 at 09.19.35.png>)
 
-Form Data is retrieved and used to make a request to JS Report for the relevant Template.
+User can submit a form, detailing the JS Report Template to Download.
 
-Prerequisites:
-Template Name as per JS Reports
-Micro-App Name
-Micro-App **Display** Title
-Micro-App **Display** Sub-Title
-Micro-App **Display** Description
-Micro-App **Display** Screenshots
-Micro-App **Display** logo
+<h5>Form Fields</h5>
 
-**DISPLAY refers to the details that will appear on the resulting templates**
+1. Micro-App Name
+2. Micro-App **Display** Title
+3. Micro-App **Display** Sub-Title
+4. Micro-App **Display** Description
+5. Micro-App **Display** Screenshots
+6. Micro-App **Display** logo
 
-![Alt text](<HelloWorld (24).png>)
+>**Display: Field will be displayed in the Downloaded Template**
 
-Submit PDF URL
+![Sample Download](<./public/images/HelloWorld (24).png>)
 
-![Alt text](<Screenshot 2023-09-04 at 09.19.43.png>)
+<h3>Submit PDF URL</h3>
 
-Submit PDF File
+![URL Tab](<./public/images/Screenshot 2023-09-04 at 09.19.43.png>)
 
-![Alt text](<Screenshot 2023-09-04 at 09.19.49.png>)
+<h3>Submit PDF File</h3>
+
+![File Tab](<./public/images/Screenshot 2023-09-04 at 09.19.49.png>)
 
 2. Postman Usage
 
-<span>POST</span>
+<span style="color: orange">POST: [Converter-Endpoint][Base-URL]</span>
 
-[Base-URL]/converter/pdf-png
-
-Form Data
+JSON Body
 
 ```json
 {
@@ -206,13 +204,13 @@ URL
 
 File Form-Data
 
-![Alt text](<Screenshot 2023-09-04 at 09.43.06.png>)
+![File Form-Data](<./public/images/Screenshot 2023-09-04 at 09.43.06.png>)
 
 3. Ayoba Developer Portal
 
-The Developer Portal Marketing tab makes use of the converter's REST API to provide users with the desired JS reports, converted to an Image/PNG.
+A user can also make use of the Converter by way of the Developer Portal, Marketing tab. The Marketing Tab makes use of the converter's REST API to provide users with the desired JS report(s), converted to an Image/PNG.
 
-![Alt text](<Screenshot 2023-09-04 at 10.17.12.png>) ![Alt text](<Screenshot 2023-09-04 at 10.17.21.png>)
+![Marketing Material](<./public/images/Screenshot 2023-09-04 at 10.17.12.png>) ![Download Template](<./public/images/Screenshot 2023-09-04 at 10.17.21.png>)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -260,9 +258,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Delali Funani - [Github](https://github.com/dfunani)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project: [Converter PDF-PNG](https://github.com/The-DigitalAcademy/converter-pdf-png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -270,16 +268,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-- [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-- [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-- [Malven's Grid Cheatsheet](https://grid.malven.co/)
-- [Img Shields](https://shields.io)
-- [GitHub Pages](https://pages.github.com)
-- [Font Awesome](https://fontawesome.com)
-- [React Icons](https://react-icons.github.io/react-icons/search)
+Use this space to list resources you find helpful and would like to give credit to.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -299,13 +288,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[Node.js]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Node-url]: https://getbootstrap.com
-[npm]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[npm-url]: https://getbootstrap.com
-[JS-Report]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[JS-Report-url]: https://getbootstrap.com
+[Base-URL]: http://localhost:3030/converter/pdf-png

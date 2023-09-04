@@ -1,4 +1,4 @@
-![Converter-Architecture drawio](https://github.com/The-DigitalAcademy/converter-pdf-png/assets/65924485/ab64fb55-c5a8-41a1-885b-2291f44074f8)<a name="readme-top"></a>
+<a name="readme-top"></a>
 
 [![Forks][forks-shield]][forks-url]
 [![Issues][issues-shield]][issues-url]
@@ -35,7 +35,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
-        <li><a href="#overview">Overview</a>a></li>li>
+        <li><a href="#overview">Overview</a></li>
       </ul>
     </li>
     <li>

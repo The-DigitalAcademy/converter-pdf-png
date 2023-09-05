@@ -67,7 +67,7 @@ Here's why:
 - PDF is widely used as the preferred document type for JS Reports and other reporting tools.
 - Converting PDF in javascript is not straight forward, and requires an aggregation of many different JS libraries.
 - PDF JS libraries requires extensive system configurations, so the project abstracts all those system requirements and rather
-    > **Exposes the conversion process to a user by way of a REST API or Frontend APIs.**
+  > **Exposes the conversion process to a user by way of a REST API or Frontend APIs.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -82,7 +82,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - JS-Reports
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ### Overview
 
@@ -122,6 +121,51 @@ This is an example of how to list things you need to use the software and how to
    git clone https://github.com/The-DigitalAcademy/converter-pdf-png
    ```
 
+2. OS Graphics Libraries
+
+<table>
+  <tr>
+    <th>OS</th>
+    <th>Command</th>
+  </tr>
+  <tr>
+    <td>OS X</td>
+    <td>
+      brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
+    </td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>
+      sudo apt-get install build-essential libcairo2-dev libpango1.0-dev
+      libjpeg-dev libgif-dev librsvg2-dev
+    </td>
+  </tr>
+  <tr>
+    <td>Fedora</td>
+    <td>
+      sudo yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel
+      giflib-devel
+    </td>
+  </tr>
+  <tr>
+    <td>Solaris</td>
+    <td>
+      pkgin install cairo pango pkg-config xproto renderproto kbproto xextproto
+    </td>
+  </tr>
+  <tr>
+    <td>OpenBSD</td>
+    <td>
+      doas pkg_add cairo pango png jpeg giflib
+    </td>
+  </tr>
+  <tr>
+    <td>Windows</td>
+    <td>doas pkg_add cairo pango png jpeg giflib</td>
+  </tr>
+</table>
+
 2. Install NPM packages
 
    ```sh
@@ -135,9 +179,14 @@ This is an example of how to list things you need to use the software and how to
    JSREPORT_URL=https://f869-154-0-10-27.ngrok-free.app/api/report
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Containerize
 
-<!-- USAGE EXAMPLES -->
+```docker
+docker build -t converter .
+docker run -p 3030:3030 converter
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
 
@@ -166,7 +215,7 @@ User can submit a form, detailing the JS Report Template to Download.
 5. Micro-App **Display** Screenshots
 6. Micro-App **Display** logo
 
->**Display: Field will be displayed in the Downloaded Template**
+> **Display: Field will be displayed in the Downloaded Template**
 
 ![Sample Download](<./public/images/HelloWorld (24).png>)
 

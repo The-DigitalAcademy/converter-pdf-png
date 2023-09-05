@@ -1,6 +1,7 @@
 FROM node:18-alpine
 
 ENV PORT=3030
+# Provide JS Report URL - localhost isn't valid
 ENV JSREPORT_URL=https://f869-154-0-10-27.ngrok-free.app/api/report
 # Install system dependencies
 RUN apk update
